@@ -1,0 +1,12 @@
+baseURL = 'https://fatehks.com/'
+languageCode = 'en-us'
+title = 'f(x) - Cognition, Synthesis, Expression'
+theme = 'PaperMod'
+
+[params]
+  author = 'David Hisel'
+  email = 'david@fatehks.com'
+  description = 'A blog exploring the world of software development, innovative tools, and powerful automations to enhance productivity and creativity.'
+  showReadingTime = true
+  showToc = true
+  defaultTheme = 'auto' # Options: auto, light, dark
