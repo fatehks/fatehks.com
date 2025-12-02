@@ -26,7 +26,5 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./public/
-          server-dir: ./public_html/
-          # Use 'git-ftp' to upload only changed files. Set to 'full' for first deployment.
-          method: full
+          server-dir: /public_html/
 
