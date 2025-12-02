@@ -1,33 +1,32 @@
-name: Deploy Hugo site to GitHub Pages
-
+name: Build and Deploy Hugo to fatehks.com
 on:
   push:
     branches:
-      - main  # Trigger deploys when you push to main
-
+      - main  # Or your default branch (e.g., master)
 jobs:
-  deploy:
-    name: Deploy
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout source
+      - name: Checkout Repo
         uses: actions/checkout@v4
         with:
-          submodules: true  # Include theme as submodule if applicable
-
+          submodules: true  # Fetches themes if they are git submodules
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: 'latest'
-
-      - name: Build site
+          extended: true
+      - name: Build Site
         run: hugo --minify
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          publish_branch: main
-          cname: fatehks.com
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: ./public/
+          server-dir: ./public_html/
+          # Use 'git-ftp' to upload only changed files. Set to 'full' for first deployment.
+          method: full
+
