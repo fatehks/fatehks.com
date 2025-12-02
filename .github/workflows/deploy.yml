@@ -19,7 +19,7 @@ jobs:
           extended: true
       - name: Build Site
         run: hugo --minify
-      - name: Deploy to Hostinger via FTP
+      - name: Deploy to fatehks.com
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
